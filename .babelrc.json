@@ -1,0 +1,3 @@
+{
+  "plugins": ["@vue/babel-plugin-jsx", "@vitejs/plugin-vue", "jsx-vue-functional", "transform-vue-jsx"]
+}

@@ -4,7 +4,7 @@ import CameraPlus from '../assets/icons/CameraPlus.svg';
 import FileAlt from '../assets/icons/FileAlt.svg';
 import FilePlus from '../assets/icons/FilePlus.svg';
 import Image from '../assets/icons/Image.svg';
-import MSWord from '../assets/icons/MSWord.svg';
+import Word from '../assets/icons/MSWord.svg';
 import Pdf from '../assets/icons/Pdf.svg';
 import Plus from '../assets/icons/Plus.svg';
 import Times from '../assets/icons/Times.svg';
@@ -21,7 +21,7 @@ enum Icons {
   FileAlt = 'FileAlt',
   FilePlus = 'FilePlus',
   Image = 'Image',
-  MSWord = 'MSWord',
+  MSWord = 'Word',
   Pdf = 'Pdf',
   Plus = 'Plus',
   Times = 'Times',
@@ -31,13 +31,17 @@ enum Icons {
 // TODO try rewrite from vite
 // https://github.com/luxueyan/vite-transform-globby-import
 
-const IconsMap = {
+type Icon = {
+  [key: string]: typeof Image,
+}
+
+const IconsMap: Icon = {
   [Icons.Trash]: Trash,
   [Icons.CameraPlus]: CameraPlus,
   [Icons.FileAlt]: FileAlt,
   [Icons.FilePlus]: FilePlus,
   [Icons.Image]: Image,
-  [Icons.MSWord]: MSWord,
+  [Icons.MSWord]: Word,
   [Icons.Pdf]: Pdf,
   [Icons.Plus]: Plus,
   [Icons.Times]: Times,

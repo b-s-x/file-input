@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// import emit from 'vue-emit';
 import {
   checkIsImage,
   getFileExtension,
@@ -94,19 +93,19 @@ console.log(2, extension);
         class="spinner"
       />
 
-        <img
-          v-if="checkIsImage(props.preview)"
-          class="file_preview"
-          :src="props.preview"
-          :alt="props.name"
-        />
+      <img
+        v-if="checkIsImage(props.preview)"
+        class="preview_img"
+        :src="props.preview"
+        :alt="props.name"
+      />
 
-        <Icon
-          v-else
-          :icon="iconRender"
-          :color="IconsColorsMap[iconRender]"
-          class="icon"
-        />
+      <Icon
+        v-else
+        :icon="iconRender"
+        :color="IconsColorsMap[iconRender]"
+        class="preview_icon"
+      />
     </button>
 
     <button
@@ -124,18 +123,39 @@ console.log(2, extension);
 <style lang="scss" scoped>
 @import '../theme/common.scss';
 
-$plateBackgroundColor: rgb(238, 238, 238);
+$plateBackgroundColor: #8080801f;
 
 .wrapper {
   display: flex;
-  width: 100%;
+  cursor: pointer;
   height: 100%;
+  width: 100%;
+
+  &.deletable {
+    padding: .75rem .75rem 0 0;
+    position: relative;
+  }
 
   &_box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: $plateBackgroundColor;
+    border: none;
+    border-radius: .5rem;
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: gray;
+    }
+  }
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
   }
 }
 
@@ -147,38 +167,31 @@ $plateBackgroundColor: rgb(238, 238, 238);
   top: 0;
 }
 
-.file {
-  background: $plateBackgroundColor;
-  border: thin solid gray;
-  border-radius: .5rem;
-  display: block;
-  height: 5rem;
-  overflow: hidden;
-  padding: 0;
-  width: 5rem;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: gray;
-  }
-
-  &:disabled {
-    opacity: .5;
-    pointer-events: none;
-  }
-
-  &_preview {
+.preview {
+  &_img {
     display: block;
+    cursor: pointer;
     height: 100%;
     object-fit: cover;
     width: 100%;
   }
-}
 
-.icon {
-  width: 2rem;
-  padding: 2rem;
+  &_icon {
+    width: 90%;
+    height: 90%;
+
+    &.pdf {
+      color: red;
+    }
+
+    &.doc {
+      color: blue;
+    }
+
+    .image:hover > & {
+      color: gray;
+    }
+  }
 }
 
 .delete {

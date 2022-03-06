@@ -31,9 +31,6 @@ const progressWidth = computed(() => `${Math.max(0, Math.min(Number(props.progre
         width: progressWidth,
         backgroundColor: props.colorScheme.line,
        }"
-      :aria-valuenow="props.progress"
-      aria-valuemin="0"
-      aria-valuemax="100"
     />
   </div>
 </template>

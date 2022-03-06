@@ -37,7 +37,7 @@ export enum FileKind {
 }
 
 export type FileMetadata = {
-  extension: string | null;
+  extension: string;
   kind: FileKind;
 }
 
@@ -52,7 +52,7 @@ export const getFileKindFromExtension = (ext: string): FileKind => {
 export const getFileMetaData = (fname: string): FileMetadata => {
   const extension = getFileExtension(fname);
   if (!extension) return {
-    extension: null,
+    extension: '',
     kind: FileKind.Unknown,
   };
   const kind = getFileKindFromExtension(extension);

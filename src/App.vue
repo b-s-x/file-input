@@ -11,6 +11,10 @@ const files = [
     preview: "https://s1.1zoom.ru/b5755/170/The_Great_Wall_of_China_Mountains_Fence_542034_2560x1440.doc",
     name: "22222",
   },
+  {
+    preview: "https://s1.1zoom.ru/b5755/170/The_Great_Wall_of_China_Mountains_Fence_542034_2560x1440.pdf",
+    name: "22222",
+  },
 ]
 
 </script>

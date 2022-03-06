@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FilePreview from '@/components/FilePreview.vue';
-// import WithSpinner from '@/components/WithSpinner.vue';
+import ProgressBar from './components/FileInput/ProgressBar.vue';
 
 const files = [
   {
@@ -17,6 +17,8 @@ const files = [
   },
 ]
 
+const progress = Math.round((30 * 100) / 40);
+
 </script>
 
 <template>
@@ -28,6 +30,15 @@ const files = [
         :key="file.name"
         :preview="file.preview"
         :name="file.name"
+      />
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <div class="progress">
+      <ProgressBar
+        :progress="progress"
       />
     </div>
   </div>
@@ -48,6 +59,11 @@ const files = [
   &:last-child {
     margin-right: 0;
   }
+}
+
+.progress {
+  width: 500px;
+  height: 1rem;
 }
 
 .preview {

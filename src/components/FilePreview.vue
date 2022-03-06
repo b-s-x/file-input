@@ -1,25 +1,12 @@
 <script lang="ts" setup>
 import {
   checkIsImage,
-  getFileExtension,
   FileKind,
   getFileMetaData,
+  FileMetadata,
 } from '@/utils/files';
-
-import WithSpinner from './WithSpinner.vue';
+// import WithSpinner from './WithSpinner.vue';
 import Icon from './Icon.vue';
-
-const iconsMap: any = {
-  [FileKind.PDF]: 'Pdf',
-  [FileKind.Document]: 'Word',
-  [FileKind.Image]: 'Image',
-};
-
-enum IconsColorsMap {
-  Pdf = 'rgb(235, 16, 0)',
-  Word = 'rgb(41, 82, 148)',
-  Image = 'green',
-};
 
 const props = defineProps({
   file: {
@@ -52,30 +39,33 @@ const props = defineProps({
   // },
 });
 
-// const {
-//   preview,
-//   name,
-//   progress,
-//   isDeliting,
-//   previewClass,
-//   blob,
-// } = props;
-
 const handleDeleteClick = () => {};
 const handlePreviewClick = () => {};
 
-const type: any = getFileMetaData(props.preview);
+const type: FileMetadata = getFileMetaData(props.preview);
+type IconsMap = {
+  [K in keyof FileKind as FileKind[K] & string]: keyof typeof IconsColors;
+};
 
-const iconRender: any = iconsMap[type.extension] || 'FileAlt'
-console.log(iconsMap[type.extension]);
+enum IconsColors {
+  Pdf = 'rgb(235, 16, 0)',
+  Word = 'rgb(41, 82, 148)',
+  Image = 'green',
+};
 
-// const isFetching = !(typeof progress === 'number'
-//   && Number.isNaN(progress))
-//   && progress > 1;
+const iconsMap: IconsMap = {
+  [FileKind.PDF]: 'Pdf',
+  [FileKind.Document]: 'Word',
+  [FileKind.Image]: 'Image',
+};
 
-const extension = getFileExtension(props.preview)
-console.log(2, extension);
+const iconTypeRender:  keyof typeof IconsColors = iconsMap[type.extension];
+const iconColor = IconsColors[iconTypeRender];
 
+//TODO: remade
+const isFetching = !(typeof props.progress === 'number'
+  && Number.isNaN(props.progress))
+  && props.progress > 1;
 
 </script>
 
@@ -84,14 +74,14 @@ console.log(2, extension);
     <button
       type="button"
       :class="['wrapper_box', props.previewClass]"
-      :disabled="false"
+      :disabled="isFetching"
       :title="props.name"
       @click="handlePreviewClick"
     >
-      <WithSpinner
-        :isFetching="false"
+      <!-- <WithSpinner
+        :isFetching="isFetching"
         class="spinner"
-      />
+      /> -->
 
       <img
         v-if="checkIsImage(props.preview)"
@@ -102,8 +92,8 @@ console.log(2, extension);
 
       <Icon
         v-else
-        :icon="iconRender"
-        :color="IconsColorsMap[iconRender]"
+        :icon="iconTypeRender"
+        :color="iconColor"
         class="preview_icon"
       />
     </button>
@@ -127,7 +117,6 @@ $plateBackgroundColor: #8080801f;
 
 .wrapper {
   display: flex;
-  cursor: pointer;
   height: 100%;
   width: 100%;
 
@@ -170,7 +159,6 @@ $plateBackgroundColor: #8080801f;
 .preview {
   &_img {
     display: block;
-    cursor: pointer;
     height: 100%;
     object-fit: cover;
     width: 100%;
@@ -179,18 +167,6 @@ $plateBackgroundColor: #8080801f;
   &_icon {
     width: 90%;
     height: 90%;
-
-    &.pdf {
-      color: red;
-    }
-
-    &.doc {
-      color: blue;
-    }
-
-    .image:hover > & {
-      color: gray;
-    }
   }
 }
 

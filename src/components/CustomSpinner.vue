@@ -25,7 +25,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
-@import "../theme/common.scss";
+@import '@common';
 
 $spinner-circle-animation-time: .6s;
 $spinner-circle-line-width: .125rem;

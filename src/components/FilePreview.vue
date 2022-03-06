@@ -111,7 +111,7 @@ const isFetching = !(typeof props.progress === 'number'
 
 
 <style lang="scss" scoped>
-@import '../theme/common.scss';
+@import '@common';
 
 $plateBackgroundColor: #8080801f;
 

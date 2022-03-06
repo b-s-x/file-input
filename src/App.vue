@@ -34,7 +34,7 @@ const files = [
 </template>
 
 <style lang="scss" scoped>
-
+@import '@common';
 .box {
   height: 100vh;
   width: 100vw;

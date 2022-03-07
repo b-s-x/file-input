@@ -73,9 +73,9 @@ const isFetching = !(typeof props.progress === 'number'
   <div :class="['wrapper', {deletable: isDeliting}]">
     <button
       type="button"
-      :class="['wrapper_box', props.previewClass]"
+      :class="['wrapper_box', previewClass]"
       :disabled="isFetching"
-      :title="props.name"
+      :title="name"
       @click="handlePreviewClick"
     >
       <!-- <WithSpinner
@@ -84,10 +84,10 @@ const isFetching = !(typeof props.progress === 'number'
       /> -->
 
       <img
-        v-if="checkIsImage(props.preview)"
+        v-if="checkIsImage(preview)"
         class="preview_img"
-        :src="props.preview"
-        :alt="props.name"
+        :src="preview"
+        :alt="name"
       />
 
       <Icon

@@ -22,14 +22,14 @@ const progressWidth = computed(() => `${Math.max(0, Math.min(Number(props.progre
 <template>
   <div
     class="progress"
-    :style="{ borderColor: props.colorScheme.border }"
+    :style="{ borderColor: colorScheme.border }"
     v-bind="$attrs"
   >
     <div
       class="progress_bar"
       :style="{
         width: progressWidth,
-        backgroundColor: props.colorScheme.line,
+        backgroundColor: colorScheme.line,
        }"
     />
   </div>

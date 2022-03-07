@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FilePreview from '@/components/FilePreview.vue';
-import ProgressBar from './components/FileInput/ProgressBar.vue';
+import ProgressBar from '@/components/FileInput/ProgressBar.vue';
+import File from '@/components/FileInput/File.vue';
 
 const files = [
   {
@@ -41,6 +42,15 @@ const progress = Math.round((30 * 100) / 40);
         :progress="progress"
       />
     </div>
+
+    <div class="file">
+      <File
+        name="https://s1.1zoom.ru/b5755/170/The_Great_Wall_of_China_Mountains_Fence_542034_2560x1440.doc"
+        size="2001465"
+        progress="100"
+      />
+    </div>
+
   </div>
 </template>
 
@@ -64,6 +74,12 @@ const progress = Math.round((30 * 100) / 40);
 .progress {
   width: 500px;
   height: 1rem;
+}
+
+.file {
+  margin-top: 2rem;
+  width: 500px;
+  height: 2rem;
 }
 
 .preview {
